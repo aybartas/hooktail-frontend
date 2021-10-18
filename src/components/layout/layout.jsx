@@ -1,29 +1,22 @@
 import React from 'react'
-import Navbar from './../navbar/navbar';
+import NavigationBar from './../navbar/navbar';
 import MenuItem from './../menu-item/menu-item';
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 const Layout = () => {
 
     return (
-        <div className="container">
-            <div className="row">
-                <Navbar></Navbar>
-            </div>
-            <div className="row">
-                <div className="col">
-                    <MenuItem></MenuItem>
-                </div>
-                <div className="col">
-                    <MenuItem></MenuItem>
-
-                </div>
-                <div className="col">
-                    <MenuItem></MenuItem>
-
-                </div>
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <NavigationBar></NavigationBar>
+            </Row>
+            <Row>
+                <Col> <MenuItem></MenuItem></Col>
+                <Col><MenuItem></MenuItem></Col>
+                <Col><MenuItem></MenuItem></Col>
+            </Row>
+        </Container>
     );
 }
 

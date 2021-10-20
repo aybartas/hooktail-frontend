@@ -1,7 +1,7 @@
 import React from 'react'
 import NavigationBar from './../navbar/navbar';
-import MenuItem from './../menu-item/menu-item';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+import MenuDirectory from '../menu-directory/menu-directory';
 
 
 const Layout = () => {
@@ -11,12 +11,15 @@ const Layout = () => {
             <Row>
                 <NavigationBar></NavigationBar>
             </Row>
+
             <Row>
-                <Col> <MenuItem></MenuItem></Col>
-                <Col><MenuItem></MenuItem></Col>
-                <Col><MenuItem></MenuItem></Col>
+                <MenuDirectory></MenuDirectory>
+
             </Row>
+            
+
         </Container>
+
     );
 }
 

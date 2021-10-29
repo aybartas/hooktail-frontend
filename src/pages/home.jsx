@@ -1,11 +1,22 @@
 
 import React from 'react'
-import Layout from '../components/layout/layout';
+import { Container, Row } from 'react-bootstrap';
+import NavigationBar from './../components/navbar/navbar';
+import MenuDirectory from './../components/menu-directory/menu-directory';
 
 
-const HomePage = () => {
+const HomePage = (props) => {
     return(
-        <Layout></Layout>
+        <Container>
+            <Row>
+                <NavigationBar></NavigationBar>
+            </Row>
+
+            <Row>
+                <MenuDirectory></MenuDirectory>
+
+            </Row>
+        </Container>
     );
 }
 

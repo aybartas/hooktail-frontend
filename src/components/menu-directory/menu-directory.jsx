@@ -42,13 +42,12 @@ class MenuDirectory extends React.Component {
             ]
         }
     }
-
+    
     render() {
         return (
             <div>
                 {
                     this.state.sections.map(section => (
-
                         <MenuItem key={section.id} title={section.title} imageUrl={section.imageUrl} linkUrl={section.linkUrl} ></MenuItem>
                     ))
                 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Col, Container, Row, ButtonGroup } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Col, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -7,7 +7,7 @@ const NavigationBar = () => {
 
   return (
     <Navbar expand="lg">
-      <Link to="/" style={{ 'text-decoration': 'none' }}>
+      <Link to="/" style={{ 'textDecoration': 'none' }}>
         <Navbar.Brand>Hooktail</Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="navbarScroll" />
@@ -47,8 +47,8 @@ const NavigationBar = () => {
         <Col className = "col-2"> </Col>
         <Col className="col-4 mt-2">
           <ButtonGroup>
-            <Button variant="success">Login</Button>
-            <Button variant="outline-dark">Register</Button>
+            <Button variant="success">Sign In</Button>
+            <Button variant="outline-dark">Sign Up</Button>
           </ButtonGroup>
 
         </Col>

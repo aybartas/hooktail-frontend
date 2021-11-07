@@ -31,7 +31,6 @@ class SignUp extends React.Component {
     }
 
     render() {
-        console.log("tekrar renderlandı");
         return <Form className="mt-4" onSubmit = {this.handleSubmit}>
             <Form.Label>Sign Up</Form.Label>
             <FloatingLabel

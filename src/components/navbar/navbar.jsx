@@ -1,10 +1,10 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Col, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/firebaseUtils';
 
-
-const NavigationBar = () => {
-
+const NavigationBar = ({ currentUser }) => {
+  console.log(`NAVIGATIONBAR ${currentUser}`);
   return (
     <Navbar expand="lg">
       <Link to="/" style={{ 'textDecoration': 'none' }}>
@@ -44,13 +44,22 @@ const NavigationBar = () => {
             <Button variant="outline-success">Search</Button>
           </Form>
         </Col>
-        <Col className = "col-2"> </Col>
+        <Col className="col-2"> </Col>
         <Col className="col-4 mt-2">
           <ButtonGroup>
-            <Button variant="success">Sign In</Button>
-            <Button variant="outline-dark">Sign Up</Button>
-          </ButtonGroup>
+            {
+              currentUser ?
+                <Button variant="outline-danger" onClick={() => auth.signOut()}>Sign Out</Button>
 
+                :
+                <div><Link to="/SignIn">
+                  <Button variant="success">Sign In</Button>
+                </Link>
+                  <Link to="/SignIn">
+                    <Button variant="outline-dark">Sign Up</Button>
+                  </Link></div>
+            }
+          </ButtonGroup>
         </Col>
       </Navbar.Collapse>
     </Navbar>

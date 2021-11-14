@@ -8,6 +8,7 @@ import { auth } from './firebase/firebaseUtils';
 import React from 'react';
 class  App extends React.Component {
   unsubscribeFromAuth = null;
+
   constructor(){
     super();
     this.state = {
@@ -21,15 +22,16 @@ class  App extends React.Component {
   componentDidMount(){
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({authenticatedUser:user});
+      console.log(user);
     });
-    // console.log(`user:${this.state.authenticatedUser}`)
   }
 
   render(){
     // console.log(`user:${this.state.authenticatedUser}`)
+    // console.log(`user:${this.state.authenticatedUser}`)
     return(
       <div className="App">
-      <NavigationBar></NavigationBar>
+      <NavigationBar currentUser = {this.state.authenticatedUser}></NavigationBar>
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/shop" component={ShopPage}></Route>

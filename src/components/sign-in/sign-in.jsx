@@ -17,12 +17,15 @@ class SignIn extends React.Component {
     
     // dynamically set state on input changes
     handleChange = (event) => {
+        console.log(event);
         const {value,name} = event.target;
         this.setState({[name]: value
         });
-    }    
+    }
+    
+    
     render() {
-
+        console.log("sign in render");
         return (
             <Form onSubmit = {this.handleSubmit} className="mt-4">
                 <Form.Label>Sign In</Form.Label>

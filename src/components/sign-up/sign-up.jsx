@@ -13,7 +13,6 @@ class SignUp extends React.Component {
     }
 
     handleSubmit = (event) => {
-        console.log("hadnlesubmit");
         this.setState({
             email:'',
             password:'',
@@ -24,7 +23,6 @@ class SignUp extends React.Component {
 
     // dynamically set state on input changes
     handleChange = (event) => {
-        console.log(event);
         const {value,name} = event.target;
         this.setState({[name]: value
         });

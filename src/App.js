@@ -22,13 +22,11 @@ class  App extends React.Component {
   componentDidMount(){
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({authenticatedUser:user});
-      console.log(user);
     });
   }
 
   render(){
-    // console.log(`user:${this.state.authenticatedUser}`)
-    // console.log(`user:${this.state.authenticatedUser}`)
+    console.log('app.js render user:'+this.state.authenticatedUser)
     return(
       <div className="App">
       <NavigationBar currentUser = {this.state.authenticatedUser}></NavigationBar>

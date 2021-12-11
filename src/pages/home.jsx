@@ -5,6 +5,7 @@ import MenuDirectory from './../components/menu-directory/menu-directory';
 
 
 const HomePage = (props) => {
+    console.log("home page render");
     return(
         <Container>
             <Row>

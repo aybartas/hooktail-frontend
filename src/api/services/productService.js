@@ -1,29 +1,27 @@
-
 import http from '../common/axios-common'
-import { productsEndpoint } from '../common/api-constans';
-
-
-export class ProductService{
-
-    getAll(){
-        return http.get(`${productsEndpoint}`); 
-    }
-
-    get(id) {
-        return http.get(`/${productsEndpoint}/${id}`);
-      }
+import {apiUrl ,productsEndpoint } from '../common/api-constans';
     
-    create(data) {
-    return http.post(`${productsEndpoint}`, data);
-    }
-
-    update(id, data) {
-    return http.put(`/${productsEndpoint}/${id}`, data);
-    }
-
-    delete(id) {
-    return http.delete(`/${productsEndpoint}/${id}`);
-    }
     
-}
+    export class ProductService{
+    
+        static async getAll(){
+            return http.get(`${apiUrl+productsEndpoint}`); 
+        }
+    
+        static async get(id) {
+            return http.get(`/${apiUrl+productsEndpoint}/${id}`);
+          }
+        
+        static async create(data) {
+        return http.post(`${apiUrl+productsEndpoint}`, data);
+        }
+    
+        static async update(id, data) {
+        return http.put(`/${apiUrl+productsEndpoint}/${id}`, data);
+        }
+    
+        static async delete(id) {
+        return http.delete(`/${apiUrl+productsEndpoint}/${id}`);
+        }
 
+    }

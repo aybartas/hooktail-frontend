@@ -6,7 +6,7 @@ import { auth } from '../../firebase/firebaseUtils';
 const NavigationBar = ({ currentUser }) => {
   console.log(`NAVIGATIONBAR ${currentUser}`);
   return (
-    <Navbar expand="lg">
+    <Navbar>
       <Link to="/" style={{ 'textDecoration': 'none' }}>
         <Navbar.Brand>Hooktail</Navbar.Brand>
       </Link>

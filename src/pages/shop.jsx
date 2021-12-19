@@ -29,18 +29,17 @@ class ShopPage extends React.Component {
     render (){
 
         const collections = this.state.collections;
-        return(
-            <div>                
-                <div className = 'shop-page'>                  
-                    {
-                        collections.map(collection => (             
-                            <CollectionPreview key = {collection.id}  items = {collection.products} title = {collection.name} ></CollectionPreview>))
-                    }
-                </div>
-            </div>
-        );
-    }
 
+        return (collections.length > 0) ? (<div>                
+            <div className = 'shop-page'>                  
+                {
+                    collections.map(collection => (             
+                        <CollectionPreview key = {collection.id}  items = {collection.products} title = {collection.name} ></CollectionPreview>))
+                }
+            </div>
+            </div>) 
+        : null;
+    }
 }
 
 export default ShopPage;

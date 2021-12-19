@@ -1,58 +1,41 @@
 import React from 'react'
 import MenuItem from './../menu-item/menu-item';
+import {CollectionService} from '../../api/services/collectionService';
+import {shopEndPoint} from '../../api/common/api-constans';
 
 class MenuDirectory extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            sections: [
-                {
-                    title: 'jackets',
-                    imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-                    id: 1,
-                    linkUrl: 'shop/jackets'
-                },
-                {
-                    title: 'sneakers',
-                    imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-                    id: 2,
-                    linkUrl: 'shop/sneakers'
-                },
-                {
-                    title: 'womens',
-                    imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-                    size: 'large',
-                    id: 3,
-                    linkUrl: 'shop/womens'
-                },
-                {
-                    title: 'mens',
-                    imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-                    size: 'large',
-                    id: 4,
-                    linkUrl: 'shop/mens'
-                },
-                {
-                    title: 'hats',
-                    imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-                    id: 5,
-                    linkUrl: 'shop/hats'
-                }
-            ]
+            sections: []
         }
     }
-    
+
+    async getCollections(){
+        await CollectionService.getAll()
+        .then(response => {
+            this.setState({
+                sections: response.data
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+    async componentDidMount(){
+        await this.getCollections();
+    }
+
     render() {
-        return (
-            <div>
-                {
-                    this.state.sections.map(section => (
-                        <MenuItem key={section.id} title={section.title} imageUrl={section.imageUrl} linkUrl={section.linkUrl} ></MenuItem>
-                    ))
-                }
-            </div>
-        );
+        let sections = this.state.sections;
+        return (sections.length > 0) ? 
+        (<div>
+            {sections
+            .filter(section => section.products.length > 0)
+            .map(section => (<MenuItem id={section.id} title={section.name} imagePath={section.products[0].imagePath} linkUrl= {shopEndPoint + "/" +section.name.toLowerCase() } ></MenuItem>))}
+        </div>):
+        null;
     }
 }
 

@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 const MenuItem = ({ id,title, imagePath,linkUrl, history, match}) => {
 
     let props = { id,title, imagePath,linkUrl, history, match};
-    console.log(props);
 
     return (
         // use match.url to fetch where menuitem has been matched and append linkUrl to get result url 

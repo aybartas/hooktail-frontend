@@ -1,28 +1,53 @@
 import React from 'react'
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
 import { signInWithGoogle } from './../../firebase/firebaseUtils';
+import {AuthService} from '../../api/services/authService';
+import {statusCodes} from '../../api/common/api-constans';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends React.Component {
-    
+
     constructor(props) {
         super(props);
-
         this.state = {
-            email: '',
+            username: '',
             password: ''
         }
     }
 
-    handleSubmit(){}
-    
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        const requestData = JSON.stringify({
+            Username : this.state.username,
+            Password : this.state.password
+        }); 
+
+        let successFullLogin = false;
+
+        await AuthService.signIn( requestData)
+        .then(response => {
+            if(response.status === statusCodes.Ok){
+                successFullLogin = true;
+            }
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        if(successFullLogin){
+            console.log("successfulLOgin");
+            return <Redirect to= "/"></Redirect> ;
+        }
+    }
+   
     // dynamically set state on input changes
     handleChange = (event) => {
-        console.log(event);
         const {value,name} = event.target;
         this.setState({[name]: value
         });
     }
-    
     
     render() {
         console.log("sign in render");
@@ -31,13 +56,13 @@ class SignIn extends React.Component {
                 <Form.Label>Sign In</Form.Label>
                 <FloatingLabel
                     controlId="floatingInput"
-                    label="Email address"
+                    label="Username"
                     className="mb-3"
                 >
-                    <Form.Control type="email" placeholder="name@example.com" onChange = {this.handleChange} />
+                    <Form.Control type="text" name= "username"  onChange = {this.handleChange}  placeholder="Username"/>
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingPassword" label="Password">
-                    <Form.Control type="password" onChange = {this.handleChange} placeholder="Password" />
+                    <Form.Control type="password" name= "password" onChange = {this.handleChange} placeholder="Password" />
                 </FloatingLabel>
                 <Button id="sign-in-submit" className="mt-4 mr-2" variant="success" type="submit">
                     Sign In
@@ -51,4 +76,4 @@ class SignIn extends React.Component {
 }
 
 
-export default SignIn;
+export default withRouter(SignIn);

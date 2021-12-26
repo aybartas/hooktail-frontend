@@ -16,6 +16,13 @@ class SignIn extends React.Component {
         }
     }
 
+    clearState = () => {
+        this.setState( {
+            username : '',
+            password: ''
+        });
+    }
+
     handleSubmit = async (e) => {
         e.preventDefault();
         const requestData = JSON.stringify({
@@ -38,8 +45,10 @@ class SignIn extends React.Component {
 
         if(successFullLogin){
             console.log("successfulLOgin");
-            return <Redirect to= "/"></Redirect> ;
         }
+        
+        this.clearState();
+
     }
    
     // dynamically set state on input changes

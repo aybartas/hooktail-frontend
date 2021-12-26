@@ -6,7 +6,8 @@ export default axios.create({
     headers: {
       "Content-type": "application/json"
     },
-    credentials : 'include' // in order to get cookies from backend
+    credentials : 'include', // in order to get cookies from backend
+    withCredentials: true
   });
 
   

@@ -33,7 +33,7 @@ class MenuDirectory extends React.Component {
         (<div>
             {sections
             .filter(section => section.products.length > 0)
-            .map(section => (<MenuItem id={section.id} title={section.name} imagePath={section.products[0].imagePath} linkUrl= {shopEndPoint + "/" +section.name.toLowerCase() } ></MenuItem>))}
+            .map(section => (<MenuItem key={section.id} title={section.name} imagePath={section.products[0].imagePath} linkUrl= {shopEndPoint + "/" +section.name.toLowerCase() } ></MenuItem>))}
         </div>):
         null;
     }

@@ -12,7 +12,8 @@ class SignIn extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirectToHome: false
         }
     }
 
@@ -45,6 +46,9 @@ class SignIn extends React.Component {
 
         if(successFullLogin){
             console.log("successfulLOgin");
+            this.setState({
+                redirectToHome : true
+            });
         }
         
         this.clearState();
@@ -59,6 +63,9 @@ class SignIn extends React.Component {
     }
     
     render() {
+        if(this.state.redirectToHome){
+            return <Redirect to="/" />
+        }
         console.log("sign in render");
         return (
             <Form onSubmit = {this.handleSubmit} className="mt-4">

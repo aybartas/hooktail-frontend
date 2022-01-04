@@ -1,11 +1,13 @@
+
+import { SET_AUTHENTICATED_USER } from './userActionTypes';
+
 const INITIAL_STATE = {
     authenticatedUser:null
 };
 
-
 const userReducer = (state = INITIAL_STATE,action) => {
      switch (action.type){
-         case 'SET_AUTHENTICATED_USER':
+         case SET_AUTHENTICATED_USER:
              return {
                  ...state,
                  authenticatedUser : action.payload

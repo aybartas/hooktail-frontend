@@ -6,6 +6,9 @@ import NavigationBar from './components/navbar/navbar';
 import SignInAndSignUp from './pages/sign-in';
 import { auth } from './firebase/firebaseUtils';
 import React from 'react';
+import { connect } from 'react-redux';
+import { setCurrentuser } from './redux/user/userActions';
+
 class  App extends React.Component {
   unsubscribeFromAuth = null;
 
@@ -26,10 +29,9 @@ class  App extends React.Component {
   }
 
   render(){
-    console.log('app.js render user:'+this.state.authenticatedUser)
     return(
       <div className="App">
-      <NavigationBar currentUser = {this.state.authenticatedUser}></NavigationBar>
+      <NavigationBar></NavigationBar>
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/shop" component={ShopPage}></Route>
@@ -40,4 +42,4 @@ class  App extends React.Component {
   }
 }
 
-export default App;
+export default connect(null,)(App);

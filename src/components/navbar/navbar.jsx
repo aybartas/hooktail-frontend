@@ -2,9 +2,12 @@ import React from 'react'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Col, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebaseUtils';
+import { connect } from 'react-redux';
+import userReducer from './../../redux/user/userReducer';
 
-const NavigationBar = ({ currentUser }) => {
-  console.log(`NAVIGATIONBAR ${currentUser}`);
+
+const NavigationBar = ({ user }) => {
+  console.log(`NAVIGATIONBAR ${user}`);
   return (
     <Navbar>
       <Link to="/" style={{ 'textDecoration': 'none' }}>
@@ -48,7 +51,7 @@ const NavigationBar = ({ currentUser }) => {
         <Col className="col-4 mt-2">
           <ButtonGroup>
             {
-              currentUser ?
+              user ?
                 <Button variant="outline-danger" onClick={() => auth.signOut()}>Sign Out</Button>
 
                 :
@@ -66,5 +69,10 @@ const NavigationBar = ({ currentUser }) => {
   );
 }
 
-export default NavigationBar;
+const mapStateToProps = state => ({  // state equals root reducer
+  user : state.user.authenticatedUser
+});
+
+
+export default connect(mapStateToProps)(NavigationBar);
 

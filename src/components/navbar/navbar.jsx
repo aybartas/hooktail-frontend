@@ -3,7 +3,6 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Col, ButtonGroup }
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebaseUtils';
 import { connect } from 'react-redux';
-import userReducer from './../../redux/user/userReducer';
 
 
 const NavigationBar = ({ user }) => {

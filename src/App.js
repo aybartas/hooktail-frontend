@@ -7,37 +7,56 @@ import SignInAndSignUp from './pages/sign-in';
 import { auth } from './firebase/firebaseUtils';
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurrentuser } from './redux/user/userActions';
+import { setCurrentUser } from './redux/user/userActions';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
-class  App extends React.Component {
+class App extends React.Component {
   unsubscribeFromAuth = null;
-  
-  constructor(){
+
+  constructor() {
     super();
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.props.setCurrentuser(user);
+      if (user) {
+        // TODO: save to firebase
+      }
+      console.log("auth changed");
+      //setCurrentUser(user);
     });
   }
 
-
-  render(){
-    return(
+  render() {
+    return (
       <div className="App">
-      <NavigationBar></NavigationBar>
-      <Switch>
-        <Route exact path="/" component={HomePage}></Route>
-        <Route path="/shop" component={ShopPage}></Route>
-        <Route path = "/signIn" component = {SignInAndSignUp}></Route>
-      </Switch>
-    </div>
+        <NavigationBar></NavigationBar>
+        <Switch>
+          <Route exact path="/" component={HomePage}></Route>
+          <Route path="/shop" component={ShopPage}></Route>
+          <Route
+            exact path="/signIn"
+            render  ={() => this.props.currentUser ? ( <Redirect to='/'></Redirect>) :
+              (<SignInAndSignUp></SignInAndSignUp>)}></Route>
+        </Switch>
+      </div>
     );
   }
 }
 
-export default connect(null, {setCurrentuser})(App);
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.authenticatedUser
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

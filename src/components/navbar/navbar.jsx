@@ -72,6 +72,5 @@ const mapStateToProps = state => ({  // state equals root reducer
   user : state.user.authenticatedUser
 });
 
-
-export default connect(mapStateToProps)(NavigationBar);
+export default connect(mapStateToProps,null)(NavigationBar);
 

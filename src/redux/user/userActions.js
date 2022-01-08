@@ -2,8 +2,9 @@ import { SET_AUTHENTICATED_USER } from "./userActionTypes";
 
 // action creator
 
-export const setCurrentuser = user => ({
+export const setCurrentUser = user => ({
     type: SET_AUTHENTICATED_USER,
     payload:user
 });
+
 

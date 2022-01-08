@@ -5,6 +5,8 @@ import {AuthService} from '../../api/services/authService';
 import {statusCodes} from '../../api/common/api-constans';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setCurrentUser } from './../../redux/user/userActions';
 
 class SignIn extends React.Component {
 
@@ -32,10 +34,17 @@ class SignIn extends React.Component {
         }); 
 
         let successFullLogin = false;
-
+        
         await AuthService.signIn( requestData)
         .then(response => {
             if(response.status === statusCodes.Ok){
+                const {setCurrentUser} = this.props;
+                setCurrentUser({
+                    Username : response.data.username,
+                    Id : response.data.id,
+                    Email : response.data.email,
+                    Roles : response.data.userRoles
+                });
                 successFullLogin = true;
             }
             console.log(response);
@@ -50,9 +59,6 @@ class SignIn extends React.Component {
                 redirectToHome : true
             });
         }
-        
-        this.clearState();
-
     }
    
     // dynamically set state on input changes
@@ -66,7 +72,7 @@ class SignIn extends React.Component {
         if(this.state.redirectToHome){
             return <Redirect to="/" />
         }
-        console.log("sign in render");
+
         return (
             <Form onSubmit = {this.handleSubmit} className="mt-4">
                 <Form.Label>Sign In</Form.Label>
@@ -91,5 +97,8 @@ class SignIn extends React.Component {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser : user => dispatch(setCurrentUser(user))
+});
 
-export default withRouter(SignIn);
+export default  withRouter(connect(null, mapDispatchToProps)(SignIn));

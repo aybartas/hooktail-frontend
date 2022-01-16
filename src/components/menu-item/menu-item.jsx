@@ -9,7 +9,7 @@ const MenuItem = ({ key,title, imagePath,linkUrl, history, match}) => {
 
     return (
         // use match.url to fetch where menuitem has been matched and append linkUrl to get result url 
-        <Card id= {key} className="bg-dark text-white mt-2 mb-2" onClick = {() => history.push(`${match.url}${linkUrl}`)} >
+        <Card id= {key} className="bg-dark text-white mt-2 mb-2 w-30 h-25" onClick = {() => history.push(`${match.url}${linkUrl}`)} >
             <Card.Img src={imagePath} alt="Card image" />
             <Card.ImgOverlay>
                 <Container className="align-middle" >

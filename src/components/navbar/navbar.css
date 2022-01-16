@@ -1,0 +1,85 @@
+.header{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.logo-container{
+    height: 50%;
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.brand-name{
+    text-decoration: none;
+}
+
+.logo{
+    width: 50px;;
+    height: 50px;
+}
+
+.signIn{
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight: 500;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+#signOut{
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight: 500;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+  padding: 10px 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color:white; 
+}
+
+.options{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.option{
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color:#e0400f;    
+}
+
+.option:hover{
+    background-color: #e0400f;
+    color: #FFFFFF;
+    border-radius: 20px;
+}
+
+
